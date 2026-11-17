@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#28645a">
+  <title>VOICEVOX 音声ノート</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span class="mark" aria-hidden="true">♪</span> 音声ノート</a><span class="tag">VOICEVOX</span></header>
+  <main>
+    <div class="intro"><p class="eyebrow">ことばを、声に。</p><h1>いつもの声を、<br class="mobile-only">どこからでも。</h1><p>文章を入力して、VOICEVOXの声で読み上げましょう。</p></div>
+    <div class="workspace">
+      <section class="panel composer" aria-labelledby="compose-title">
+        <div class="section-head"><h2 id="compose-title">音声をつくる</h2><span class="step">01 / CREATE</span></div>
+        <label for="text">読み上げる文章</label>
+        <textarea id="text" rows="7" maxlength="200" placeholder="ここに読み上げたい文章を入力してください。"></textarea>
+        <div class="text-meta"><span>日本語の文章に対応</span><span id="count">0 / 200文字</span></div>
+        <div class="settings"><div><label for="speaker">話者・スタイル</label><select id="speaker" disabled><option>話者を読み込み中…</option></select><button id="reload" class="link-button" hidden>話者を再読み込み</button></div><div><label for="speed">再生速度 <output id="speed-value">1.0倍</output></label><input id="speed" type="range" min="0.5" max="2" step="0.1" value="1"><div class="range-labels"><span>ゆっくり</span><span>はやく</span></div></div></div>
+        <p class="notice">音声生成時に文章と話者情報を外部サービス「tts.quest」へ送信します。個人情報や秘密の文章は入力しないでください。無料APIのため待ち時間・利用制限があります。</p>
+        <div class="actions"><button id="generate" class="primary" disabled><span aria-hidden="true">✦</span> 音声を生成</button><button id="cancel" class="secondary" hidden>キャンセル</button></div>
+        <p id="status" class="status" role="status" aria-live="polite">話者を読み込んでいます。</p>
+        <div id="result" class="result" hidden>
+          <div class="section-head"><h3>できあがった音声</h3><span id="credit" class="small"></span></div>
+          <p id="result-text"></p><audio id="audio" controls preload="metadata"></audio>
+          <div class="actions"><button id="save" class="secondary">この端末に記録</button><a id="download" class="download" download="voicevox.wav">WAVをダウンロード ↓</a></div>
+        </div>
+      </section>
+      <aside class="panel history" aria-labelledby="history-title"><div class="section-head"><h2 id="history-title">音声の記録</h2><span class="step">02 / LIBRARY</span></div><p class="subtext">保存先は、今使っているブラウザーです。<br>他の端末とは同期しません。</p><p id="history-status" role="status" class="small"></p><div id="history-list"></div><div id="empty" class="empty"><span aria-hidden="true">♫</span><h3>声を、ここに残そう。</h3><p>生成した音声の「この端末に記録」を<br>押すと、ここから聴き直せます。</p></div></aside>
+    </div>
+    <details class="help"><summary>使い方・無料版について</summary><ul><li>このPCやVOICEVOXアプリを起動しておく必要はありません。インターネット接続が必要です。</li><li>再生速度は音声の再生時に反映します。ダウンロードするWAVは標準速度です。</li><li>文字ごとのピッチ調整は、この無料API版では利用できません。</li><li>記録はブラウザー内に音声データとして保存します。ブラウザーのデータを削除すると記録も消えます。残したい音声はダウンロードしてください。</li><li>API提供側の混雑や停止により使えない場合があります。連続生成時は表示される待ち時間を守ってください。</li></ul><p>使用した声の名前をクレジット表示しています。音声を外部で利用する際は、<a href="https://voicevox.hiroshiba.jp/" target="_blank" rel="noopener noreferrer">VOICEVOXと各音声ライブラリの利用規約</a>をご確認ください。</p></details>
+    <footer>音声合成：VOICEVOX · <a href="https://voicevox.su-shiki.com/su-shikiapis/ttsquest/" target="_blank" rel="noopener noreferrer">非公式WEB版VOICEVOX API</a><span>自分のことば、自分のペースで。</span></footer>
+  </main>
+</body>
+</html>
